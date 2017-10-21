@@ -30,7 +30,7 @@ then
     else
         #create one container mapping to this android device
 	echo `date "+%Y-%m-%d_%T"`"[Container]$DEV_CONTAINER_NAME will be created for ${DEV_ID_MODEL}_${DEV_ID_SERIAL_SHORT}" >> /tmp/add
-        docker run -d -it --name=$DEV_CONTAINER_NAME -v /etc/apt:/etc/apt nuaays/android_stf
+        docker run -d -P --name=$DEV_CONTAINER_NAME -v /etc/apt:/etc/apt nuaays/android_stf:stf
         docker inspect --format='{{.State.Running}}' $DEV_CONTAINER_NAME
         docker-enter $DEV_CONTAINER_NAME mkdir -p /dev/bus/usb/$BUSNUM
         docker-enter $DEV_CONTAINER_NAME mknod --mode 0666 /dev/bus/usb/$BUSNUM/$DEVNUM c $DEV_MAJOR $DEV_MINOR
