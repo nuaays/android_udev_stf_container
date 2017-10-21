@@ -2,7 +2,7 @@
 
 ## One Android Devices mapping to One Docker Container using udev and cgroup
 
-* host udev setup
+* host udev rule setup
 
 ```
 cp ./bin/* /usr/bin
@@ -15,4 +15,16 @@ udevadm trigger
 
 ```
 docker build -t nuaays/android_stf .
+```
+
+* simple docker image only with adb
+
+```
+nuaays/android_stf:adb
+```
+
+* docker image with stf and rethinkdb
+
+```
+nuaays/android_stf:stf
 ```
