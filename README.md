@@ -31,6 +31,11 @@ nuaays/android_stf:adb
 nuaays/android_stf:stf
 ```
 
+* launch rethinkdb using container
+
+```
+docker run --net=host --name=rethink -v "$PWD/rethink_data:/data" -d rethinkdb
+```
 
 
 ## Monitor the change on USB by udevadm monitor command
