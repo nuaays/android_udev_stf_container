@@ -1,0 +1,5 @@
+ACTION=="add", SUBSYSTEM=="usb", RUN+="/usr/bin/add_android_device %p"
+ACTION=="remove", SUBSYSTEM=="usb", RUN+="/usr/bin/remove_android_device %p %E{DEVTYPE} %E{ID_MODEL} %E{ID_SERIAL_SHORT}"
+
+
+#http://blog.csdn.net/u010783226/article/details/51798968

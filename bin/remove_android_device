@@ -1,0 +1,24 @@
+#!/bin/sh
+DEV_TYPE=$2
+DEV_ID_MODEL=$3
+DEV_ID_SERIAL_SHORT=$4
+#DEV_PCI_PATH=/devices/pci0000:00/0000:00:11.0/0000:02:03.0/usb1/1-2
+DEV_PCI_PATH=${1%/*}
+
+#PRODUCT=`udevadm info --attribute-walk -p $DEV_PCI_PATH | grep ATTR{product} | cut -d '"' -f 2`
+#DEV_CONTAINER_NAME="${DEV_ID_MODEL}_${DEV_ID_SERIAL_SHORT}_"`echo $DEV_PCI_PATH | sed -e 's/\//A/g' -e 's/:/B/g' -e 's/\./C/g'`
+DEV_CONTAINER_NAME="Android_"`echo $DEV_PCI_PATH | sed -e 's/\//A/g' -e 's/:/B/g' -e 's/\./C/g'`
+
+DEV_CONTAINER_STATE=`docker inspect --format='{{ .State.Running }}' $DEV_CONTAINER_NAME`
+if [ "$DEV_CONTAINER_STATE"x = "true"x ];
+then
+    #remove the responding exsiting container
+    echo `date "+%Y-%m-%d_%T"`"[Container]$DEV_CONTAINER_NAME will be removed!" >>/tmp/remove
+    docker-enter $DEV_CONTAINER_NAME rm -fr /dev/bus/usb
+    DEV_CONTAINER_ID=`docker inspect --format='{{.Id}}' $DEV_CONTAINER_NAME`
+    docker rm -f $DEV_CONTAINER_ID
+    #DEV_CONTAONER_NODE=`cat /sys/fs/cgroup/devices/docker/$DEV_CONTAINER_ID/devices.list |grep 189`
+    #echo "$DEV_CONTAONER_NODE" > /sys/fs/cgroup/devices/docker/$DEV_CONTAINER_ID/devices.deny
+fi
+
+
