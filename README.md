@@ -174,3 +174,10 @@ SUBSYSTEM=usb
 TYPE=0/0/0
 USEC_INITIALIZED=9212838805
 ```
+
+
+
+## Reference
+* http://www.jianshu.com/p/8632c728325e
+* https://testerhome.com/topics/6112
+* https://github.com/openstf/stf/blob/e3d87f253a9536bf7d6185bf023cdd5abaa04247/doc/DEPLOYMENT.md
