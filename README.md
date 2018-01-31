@@ -1,6 +1,6 @@
 
 
-## One Android Devices mapping to One Docker Container using udev and cgroup
+## One Android Device mapping to One Docker Container using udev and cgroup
 
 ![snapshot](android_stf.png)
 
