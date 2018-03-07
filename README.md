@@ -1,7 +1,7 @@
 
 
 ## One Android Device mapping to One Docker Container using udev and cgroup
-
+安卓USB设备与容器一一对应
 ![snapshot](android_stf.png)
 
 * host udev rule setup
